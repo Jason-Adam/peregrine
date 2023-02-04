@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_requests:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: carbo build --verbose
+
+    - name: Run Tests
+      run: cargo test --verbose
